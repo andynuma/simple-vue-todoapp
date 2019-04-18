@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>To do List</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <!-- .preventでページ遷移を防ぐこと -->
+    <form @submit.prevent="addTodo()">
+        <!-- 双方向はv-modelを使う -->
+        <!-- v-onだと値が変わっても再描画されない -->
+      <input type="text" v-model="addText" placeholder="todoを入力">
+      <button v-on:click="addTodo()">追加</button>
+    </form>
+    <br>
+    <ul v-for="(todo, index) in list">
+      <li>
+        {{ index + 1 }} : {{todo.text}}
+        <button v-on:click="deleteTodo(index)">削除</button>
+      </li>
+    </ul>
+  </div>
+<script src="contents.js"></script>
+</body>
+</html>
